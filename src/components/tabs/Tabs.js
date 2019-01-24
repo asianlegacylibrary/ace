@@ -10,10 +10,6 @@ class Tabs extends Component {
     this.props.dispatch({type: SET_TAB, tab: tab})
   }
 
-  getKeyByValue = (object, value) => {
-    return Object.keys(object).find(key => object[key] === value);
-  }
-
   render() {
     const { children, activeTab, t } = this.props
     return (

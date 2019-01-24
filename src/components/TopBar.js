@@ -1,12 +1,12 @@
 import React from 'react'
-import Languages from './Languages'
 
-//import '../assets/css/topbar.scss'
+import logo from '../assets/img/acip_logo.svg'
+import '../assets/css/topbar.scss'
 
 const TopBar = () => {
     return (
         <div className="top-bar">
-            <Languages />
+            <img src={logo} alt="logo" height="30px" />
         </div>
     )
     

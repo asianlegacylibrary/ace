@@ -5,13 +5,16 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333333;
     color: $color-text-light;
     padding: $pad-text;
 
     li {
         float: left;
       }
+    
+    button {
+      background-color: #222;
+    }
       
       li a {
         display: block;

@@ -12,8 +12,10 @@
   // }
   .viewer {
     flex-grow: 1;
-    background: rgba(111, 40, 240, 0.5);
+    background: #ccc;
     padding: $pad-text;
+    background-size: cover;
+    background-position: top;
   }
   
   .wrapper-entry {
@@ -26,13 +28,15 @@
     padding: $pad-text;
     flex: 1 0px;
     flex-basis: 36vw;
-    background-color: aliceblue;
+    overflow: scroll;
+    background-color: #eee;
   }
+
   .wrapper-forms {
     padding: $pad-text;
     flex: 1 0px;
     flex-basis: 70vw;
-    background-color: aqua;
+    background-color: #eee;
   }
 
   /* MEDIA QUERIES

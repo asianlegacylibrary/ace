@@ -1,9 +1,9 @@
 import React from 'react'
 
 import TopBar from './TopBar'
-import { Viewer } from './Viewer'
+import Viewer from './Viewer'
 import Details from './Details'
-import { Forms } from './Forms'
+import Forms from './Forms'
 
 import '../assets/css/layout-flex.scss'
 

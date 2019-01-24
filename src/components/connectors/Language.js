@@ -4,43 +4,42 @@ import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 
 //{ active, activeTab, children, dispatch, lang, i18n, t }
-const Language = (props) => {
+const Language = ({ language, active, children, dispatch, i18n }) => {
 
-  console.log('from lang', props)
+  console.log('Language.js render...')
 
-  const updateLangAndTabs = (lng) => {
-    props.dispatch(setLanguage(props.lang))
-    props.i18n.changeLanguage(lng)
+  const updateLangAndTabs = () => {
+    dispatch(setLanguage(language))
+    i18n.changeLanguage(language)
   }
   
   return (
     <li
-      key={props.children}
+      key={children}
       onClick={() => {
-        updateLangAndTabs(props.lang)
+        updateLangAndTabs(language)
         }}
-      className={props.active ? "lang-active" : "lang"}
-      style={props.active ? 
+      className={active ? "lang-active" : "lang"}
+      style={active ? 
         { color: 'red', } :
         { color: 'black', } 
         }
     >
     <button
-      key={props.children}
-      disabled={props.active ? true : false}
+      key={children}
+      disabled={active ? true : false}
       className="btn-lang">
-      {props.children}
+      {children}
     </button>
     </li>
   )
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('mstp language, ', 'state:', state, 'ownProps:', ownProps)
+  //console.log('mstp language, ', 'state:', state, 'ownProps:', ownProps)
   return {
-    active: ownProps.selectedLanguage === state.selectedLanguage,
-    lang: ownProps.selectedLanguage || initialState.defaultLanguage,
-    activeTab: state.activeTab || initialState.activeTab
+    active: ownProps.language === state.selectedLanguage,
+    language: ownProps.language || initialState.defaultLanguage
   }
 }
 

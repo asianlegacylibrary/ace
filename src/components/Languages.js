@@ -11,7 +11,7 @@ const Languages = (props) => {
     let list = []
     list = Object.entries(props.t('languageCodes')).map(([k, l]) => {
         return (
-            <Language key={l} selectedLanguage={k}>
+            <Language key={l} language={k}>
                 {l}
             </Language>
         )

@@ -3,6 +3,7 @@
 .tabs {
     cursor: pointer;
 }
+
 .tab-list { 
     border-bottom: 1px solid #ccc;
     padding-left: 0;
@@ -17,16 +18,17 @@
         border-radius: 3px;
 
         &.active {
-            background-color: #efefef;
+            background-color: #ddd;
             border: solid #ccc;
             border-width: 1px 1px 0 1px;
+            font-weight: bold;
         }
       }
 
 }
 
 .tab-content {
-    background-color: #efefef;
+    background-color: #ddd;
     padding: $pad-text;
 }
 
