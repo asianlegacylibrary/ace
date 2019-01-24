@@ -3,7 +3,8 @@ export const DECREMENT = 'DECREMENT'
 
 export const initialState = {
     count: 0,
-    activeTab: 'Volume'
+    activeTab: 'volume',
+    defaultLanguage: 'en'
 }
 
 export const SET_TAB = 'SET_TAB'
@@ -12,3 +13,8 @@ export const setTab = tab => ({
     tab
 })
 
+export const SET_LANG = 'SET_LANG'
+export const setLanguage = language => ({
+    type: SET_LANG,
+    language
+})

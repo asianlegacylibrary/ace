@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const Tab = (props) => {
-    const { activeTab, label, onClick } = props;
-    let className = 'tab-list-item';
-    className = activeTab === label ? className += ' active' : className
+const Tab = (props) => {
+    const { activeTab, label, onClick, labelKey } = props;
+    let className = 'tab-list-item'
+    className = labelKey === activeTab ? 'tab-list-item active' : 'tab-list-item'
     
     return (
       <li className={className} onClick={() => onClick(label)}>
@@ -11,3 +11,5 @@ export const Tab = (props) => {
       </li>
     )
 }
+
+export default Tab

@@ -1,0 +1,52 @@
+{
+  "title": "Asian Classics судлаач",
+  "sub-title": "",
+  "version": "0.1.1",
+  "tabs": {
+    "volume": "эзлэхүүн",
+    "catalog": "Каталог",
+    "input": "оруулах",
+    "search": "хайлт"
+  },
+  "pages": {
+    "home": "Нүүр",
+    "archives": "Архивууд"
+  },
+  "technical": {
+    "loading": "Татаж авах",
+    "loading-image": "Зураг татах...",
+    "btn-close": "Хаах"
+  },
+  "languageCodes": {
+    "en": "English",
+    "mn": "Монгол хэл"
+  },
+  "languageCodeLookup": {
+    "English": "en",
+    "Mongolian": "mn"
+  },
+  "languages": {
+    "en": "English",
+    "mn": "Монгол хэл"
+  },
+  "archives": {
+    "author": "Зохиогч",
+    "genre": "Төрөл зүйл",
+    "topic": "Агуулга",
+    "more": "Дэлгэрэнгүй үзэх..."
+  },
+  "modal": {
+    "detail": "Нарийвчлан үзэх"
+  },
+  "bdrc-ontology": {
+    "work": "Aжил",
+    "person": "Бие хүн",
+    "topic": "Агуулга"
+  },
+  "footer": {
+    "terms": "Ашиглах журам",
+    "privacy": "Нууцлах журам",
+    "contact": "Холбоо барих",
+    "rights": "Зохиогчийн эрхээр хамгаалагдсан"
+  }
+}

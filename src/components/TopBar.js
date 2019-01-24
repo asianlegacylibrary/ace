@@ -1,32 +1,15 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import '../assets/css/topbar.scss'
+import Languages from './Languages'
 
-const TopBar = (props) => {
+//import '../assets/css/topbar.scss'
+
+const TopBar = () => {
     return (
-        <ul className="top-bar">
-            <li>
-                <button 
-                    onClick={() => 
-                        props.dispatch({type: 'DECREMENT'})}>
-                    -
-                </button>
-            </li>
-            <li>{props.count}</li>
-            <li>
-                <button 
-                    onClick={() => 
-                        props.dispatch({type: 'INCREMENT'})}>
-                    +
-                </button>
-            </li>
-        </ul>
+        <div className="top-bar">
+            <Languages />
+        </div>
     )
     
 }
 
-const mapStateToProps = (state) => ({
-    count: state.count
-})
-
-export default connect(mapStateToProps)(TopBar)
+export default TopBar

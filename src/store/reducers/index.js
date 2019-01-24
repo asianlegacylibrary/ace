@@ -4,7 +4,8 @@ import {
     initialState,
     DECREMENT, 
     INCREMENT, 
-    SET_TAB 
+    SET_TAB,
+    SET_LANG
 } from '../actions'
 
 const count = (state = initialState.count, action) => {
@@ -25,11 +26,20 @@ const activeTab = (state = initialState.activeTab, action) => {
         default:
             return state
     }
+}
 
+const selectedLanguage = (state = initialState.defaultLanguage, action) => {
+    switch(action.type){
+        case SET_LANG:
+            return action.language
+        default:
+            return state
+    }
 }
 
 const rootReducer = combineReducers({
     activeTab,
+    selectedLanguage,
     count
 })
 

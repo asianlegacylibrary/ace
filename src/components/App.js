@@ -2,10 +2,10 @@ import React from 'react'
 
 import TopBar from './TopBar'
 import { Viewer } from './Viewer'
-import { Details } from './Details'
-import { Form } from './Form'
+import Details from './Details'
+import { Forms } from './Forms'
 
-import '../assets/css/index.scss'
+import '../assets/css/layout-flex.scss'
 
 export const App = () => {
   return (
@@ -16,7 +16,7 @@ export const App = () => {
       </div>
       <div className="wrapper-entry">
         <Details />
-        <Form />
+        <Forms />
       </div>
     </div>
   )

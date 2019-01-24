@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Tab } from './Tab'
-import { SET_TAB } from '../../store/actions';
+import { withNamespaces } from 'react-i18next'
+import Tab from './Tab'
+import { SET_TAB } from '../../store/actions'
 
 class Tabs extends Component {
 
@@ -9,8 +10,12 @@ class Tabs extends Component {
     this.props.dispatch({type: SET_TAB, tab: tab})
   }
 
+  getKeyByValue = (object, value) => {
+    return Object.keys(object).find(key => object[key] === value);
+  }
+
   render() {
-    const { children, activeTab } = this.props
+    const { children, activeTab, t } = this.props
     return (
       <div className="tabs">
         <ul className="tab-list">
@@ -21,8 +26,9 @@ class Tabs extends Component {
                     <Tab
                         activeTab={activeTab}
                         key={label}
-                        label={label}
-                        onClick={this.onClickTabItem}
+                        labelKey={label}
+                        label={t('tabs')[label]}
+                        onClick={() => this.onClickTabItem(label)}
                     />
                 )
             })
@@ -46,4 +52,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Tabs)
+const withN = new withNamespaces()(Tabs)
+export default connect(mapStateToProps)(withN)
