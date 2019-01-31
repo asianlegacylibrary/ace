@@ -38,3 +38,12 @@ export const setLanguage = language => ({
     type: SET_LANG,
     language
 })
+
+export const CURRENT_BG_POS = 'CURRENT_BG_POS'
+export const currentBGpos = ({x, y}) => ({
+    type: CURRENT_BG_POS,
+    viewer: {
+        x,
+        y
+    }
+})

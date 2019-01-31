@@ -5,7 +5,8 @@ import {
     DECREMENT, 
     INCREMENT, 
     SET_TAB,
-    SET_LANG
+    SET_LANG,
+    CURRENT_BG_POS
 } from '../actions'
 
 const count = (state = initialState.count, action) => {
@@ -37,10 +38,20 @@ const selectedLanguage = (state = initialState.defaultLanguage, action) => {
     }
 }
 
+const viewer = (state = {x:0, y:0}, action) => {
+    switch(action.type) {
+        case CURRENT_BG_POS:
+            return action.viewer
+        default:
+            return state
+    }
+}
+
 const rootReducer = combineReducers({
     activeTab,
     selectedLanguage,
-    count
+    count,
+    viewer
 })
 
 export default rootReducer

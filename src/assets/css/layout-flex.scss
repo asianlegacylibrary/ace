@@ -14,9 +14,17 @@
     flex-grow: 1;
     background: #ccc;
     padding: $pad-text;
-    background-size: cover;
-    background-position: top;
+    // background-size: 
   }
+
+  // .viewer img {
+  //   background-size: cover;
+  //   background-position: top;
+  // }
+
+  // .viewer:hover img {
+  //   opacity: 0;
+  // }
   
   .wrapper-entry {
     display: flex;
