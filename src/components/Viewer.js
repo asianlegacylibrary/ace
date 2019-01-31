@@ -22,7 +22,8 @@ class Viewer extends Component {
         backgroundImage: `url(${mediaURL})`,
         backgroundPosition: '0% 0%',
         backgroundSize: 'cover',
-        backgroundRepeat: `no-repeat`
+        backgroundRepeat: `no-repeat`,
+        clicked: false
       }
 
 
@@ -40,26 +41,43 @@ class Viewer extends Component {
         const { left, top, width, height } = e.target.getBoundingClientRect()
         const x = (e.pageX - left) / width * 100
         const y = (e.pageY - top) / height * 100
-        this.setState({
-            backgroundPosition: `${x}% ${y}%`,
-            backgroundSize: 'auto'
-        })
+        if(!this.state.clicked) {
+            this.setState({
+                backgroundPosition: `${x}% ${y}%`,
+                backgroundSize: 'auto'
+            })
+        }
+        
     }
 
     handleMouseLeave = (e) => {
-        this.setState({ 
-            backgroundSize: 'cover',
-            backgroundPosition: '0% 0%'
+        if(!this.state.clicked) {
+            this.setState({ 
+                backgroundSize: 'cover',
+                backgroundPosition: '0% 0%'
+            })
+        }
+    }
+
+    handleClick = () => {
+        this.setState(prevState => {
+            return {
+                clicked: !prevState.clicked
+            }
+        }, () => {
+            if(this.state.clicked) {
+                console.log('click')
+            }
         })
     }
 
     render() {
-        console.log(this.props.bgPos)
         return (
             <div 
                 className="viewer"
                 onMouseMove={this.handleMouseMove}
                 onMouseLeave={this.handleMouseLeave}
+                onClick={() => this.handleClick(this.state.clicked)}
                 style={this.state}>
                 {this.props.t("viewer.title")}
             </div>
