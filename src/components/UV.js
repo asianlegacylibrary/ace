@@ -67,7 +67,7 @@ export default class UVComponent extends Component {
         }, false)
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         this.setupUV()
     }
 
