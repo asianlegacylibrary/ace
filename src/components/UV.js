@@ -56,6 +56,14 @@ export default class UVComponent extends Component {
         // prevent server-side compilation error
         if (typeof window === 'undefined') {
             return
+        } else if("UV" in window) {
+            // uvLoaded already happened? so this code never runs
+            // when uv.js is cached (304)
+            // in firefox problem happens 
+            console.log('uv in window, but possibly uvLoaded event will not fire')
+            if(this.uvstate === undefined) {
+                this.createUVobj()
+            }
         }
 
         window.addEventListener('uvLoaded', (e) => {
@@ -68,9 +76,8 @@ export default class UVComponent extends Component {
             
         }, false)
 
-       // uvLoaded already happened? so this code never runs
-       // when uv.js is cached (304)
-       // in firefox problem happens 
+        
+        
 
     }
 
@@ -82,6 +89,7 @@ export default class UVComponent extends Component {
         }
     }
     
+    // need to look into this lifecycle method
     componentWillUpdate = () => {
         console.log('will update')
     }
