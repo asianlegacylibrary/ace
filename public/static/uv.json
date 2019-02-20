@@ -1,0 +1,20 @@
+{
+    "options": {
+      "headerPanelEnabled": true,
+      "footerPanelEnabled": false,
+      "leftPanelEnabled": true,
+      "termsOfUseEnabled": false
+    },
+    "modules": {
+      "headerPanel": {
+        "options": {
+          "localeToggleEnabled": false
+        }
+      },
+      "footerPanel": {
+        "options": {
+          "downloadEnabled": false
+        }
+      }
+    }
+}

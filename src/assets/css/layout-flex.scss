@@ -13,7 +13,7 @@
   .viewer {
     flex-grow: 1;
     background: #ccc;
-    padding: $pad-text;
+    padding: 0;
     // background-size: 
   }
 
@@ -34,6 +34,7 @@
   
   .details {
     padding: $pad-text;
+    z-index: 100;
     flex: 1 0px;
     flex-basis: 36vw;
     overflow: scroll;
@@ -41,6 +42,7 @@
   }
 
   .wrapper-forms {
+    z-index: 100;
     padding: $pad-text;
     flex: 1 0px;
     flex-basis: 70vw;

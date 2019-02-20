@@ -20,6 +20,9 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
+    backend: {
+      loadPath: '/static/locales/{{lng}}/{{ns}}.json'
+    },
     fallbackLng: 'en',
     debug: true,
     load: 'languageOnly',

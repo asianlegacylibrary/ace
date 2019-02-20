@@ -1,0 +1,29 @@
+@import './variables.scss';
+
+#uv {
+    //min-height: 50vh;
+    flex-grow: 1;
+    background: #ccc;
+    padding: 0;
+}
+
+.uv {
+    background-color: #222 !important;
+    //height: 50vh;
+    .mainPanel {
+        background-color: #222;
+    }
+    .mobileFooterPanel {
+        background-color: #222;
+        height: 12px !important;
+    }
+    .centerPanel {
+        background-image: url('../img/acip_logo.svg');
+        background-repeat: no-repeat;
+        background-size: 6em;
+        float: left;
+        .title {
+            float: right;
+        }
+    }
+}

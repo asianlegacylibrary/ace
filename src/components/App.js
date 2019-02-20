@@ -11,7 +11,7 @@ export const App = () => {
   return (
     <div>
       <div className="wrapper-view">
-        <TopBar />
+        {/* <TopBar /> */}
         <Viewer />
       </div>
       <div className="wrapper-entry">
