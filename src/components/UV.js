@@ -60,21 +60,37 @@ export default class UVComponent extends Component {
 
         window.addEventListener('uvLoaded', (e) => {
 
-            if(!this.uvstate) {
+            if(this.uvstate === undefined) {
                 this.createUVobj()
             }
+
+            console.log('uvLoaded', window)
             
         }, false)
+
+       // uvLoaded already happened? so this code never runs
+       // when uv.js is cached (304)
+       // in firefox problem happens 
+
     }
 
     componentDidMount = () => {
-        this.setupUV()
+        if(this.uvstate === undefined) {
+            this.setupUV()
+        } else {
+            this.openManifest()
+        }
+    }
+    
+    componentWillUpdate = () => {
+        console.log('will update')
     }
 
     componentWillReceiveProps = (nextProps) => {
         console.log('next props', nextProps, 'uvstate', this.uvstate)
-        if(!this.uvstate) {
+        if(this.uvstate === undefined) {
             this.setupUV()
+
         } else if(this.uvstate.iiifResourceUri !== nextProps.manifest) {
             console.log('we need to load a new manifest', this.props.manifest, nextProps.manifest)
             this.uvstate.iiifResourceUri = nextProps.manifest
