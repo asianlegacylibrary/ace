@@ -57,12 +57,13 @@ export default class UVComponent extends Component {
         if (typeof window === 'undefined') {
             return
         } else if("UV" in window) {
-            // uvLoaded already happened? so this code never runs
-            // when uv.js is cached (304)
-            // in firefox problem happens 
+            // uvLoaded already happened? 
+            // event uvLoaded never 'heard' when uv.js is cached (304)
+            // problem happens in firefox, sometimes in Chrome / Safari
             console.log('uv in window, but possibly uvLoaded event will not fire')
             if(this.uvstate === undefined) {
                 this.createUVobj()
+                return
             }
         }
 

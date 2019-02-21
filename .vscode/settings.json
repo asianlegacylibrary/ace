@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "./src/python/venv/bin/python3.7",
+    "python.globalModuleInstallation": true
+}

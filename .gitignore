@@ -8,6 +8,12 @@
 # testing
 /coverage
 
+# python
+/src/python/venv
+
+# Universal Viewer
+/public/static/uv
+
 # production
 /build
 
