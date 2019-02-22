@@ -9,7 +9,10 @@
 /coverage
 
 # python
+/src/python/config.py 
 /src/python/venv
+/src/python/data
+
 
 # Universal Viewer
 /public/static/uv

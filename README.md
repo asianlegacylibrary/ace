@@ -3,9 +3,20 @@
 
 Add description...
 
+## Universal Viewer
+add url..
+IIIF client
+
+postinstall script to copy uv folder from node_modules
 
 
+## PYTHON
+Create virtualenv:
+$ which python3
+$ virtualenv -p /path/to/python3 venv
 
+When using VS Code, important settings.json in .vscode dir:
+"python.pythonPath": "./src/python/venv/bin/python3.7","python.globalModuleInstallation": true
 
 ## Available Scripts
 In the project directory, you can run:
