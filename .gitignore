@@ -9,6 +9,7 @@
 /coverage
 
 # python
+/src/python/__pycache__
 /src/python/config.py 
 /src/python/venv
 /src/python/data
