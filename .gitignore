@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# archive, pre-re-fak-tor
+/src/archive
+
 # python
 /src/python/__pycache__
 /src/python/config.py 
