@@ -30,5 +30,17 @@
 .tab-content {
     background-color: #ddd;
     padding: $pad-text;
+    ul {
+        list-style: none;
+        padding-left: 0em;
+    }
+    button {
+        color: #413D53 !important;
+        border: 0;
+    }
+}
+
+input {
+    width: 100%;
 }
 

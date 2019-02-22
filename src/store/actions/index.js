@@ -4,7 +4,8 @@ export const DECREMENT = 'DECREMENT'
 export const initialState = {
     count: 0,
     activeTab: 'config',
-    defaultLanguage: 'en'
+    defaultLanguage: 'en',
+    index: 'titles'
 }
 
 export const randomIIIFimages = [
@@ -45,7 +46,7 @@ export const getRandomInt = (min, max) => {
 }
 
 // check if the BDRC image server is up (it's down a lot these days!)
-export const checkBDRC = async () => {
+export const checkIIIFserver = async () => {
     try {
         const response = await fetch(bdrcManifest)
         if(response.ok) { return true }
@@ -72,6 +73,12 @@ export const SET_LANG = 'SET_LANG'
 export const setLanguage = language => ({
     type: SET_LANG,
     language
+})
+
+export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM'
+export const setItem = item => ({
+    type: SET_CURRENT_ITEM,
+    item
 })
 
 export const CURRENT_BG_POS = 'CURRENT_BG_POS'

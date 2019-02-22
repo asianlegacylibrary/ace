@@ -5,7 +5,7 @@ import './assets/css/index.scss'
 import './assets/css/overrides.scss'
 import { store } from './store'
 import { SET_LANG, initialState } from './store/actions'
-import { App } from './components/App'
+import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 
 // this is what gives the entire app access to t, i18n...
