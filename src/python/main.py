@@ -4,10 +4,10 @@ import sys
 import json
 from pathlib import Path
 
-from config import config_es
+from config import config_es, index_ids
 
 # create ES client
-env = "production"
+env = "development"
 es = Elasticsearch(
     [config_es[env]],
     sniff_on_start=True,
@@ -43,17 +43,19 @@ def load_json(directory):
                 yield json.load(open_file), index
 
 #load_json(data)
-def g():
+def index_items(index_type):
     for f, index in load_json(data):
         print("index is: ", index)
-        reindex(index)
-        for work in f:
+        if index_type == "index":
+            reindex(index)
+        for i, work in enumerate(f):
+            # a if condition else b
+            work_id = work[index_ids[index]] if index_ids[index] in work else "_no_work_id_" + str(i)
             yield {
+                "_id": work_id,
                 "_index": index,
                 "_type": "document",
                 "_source": work
             }
-        #     print("************************")
-        #     print(work)
-helpers.bulk(es, g())
-#helpers.bulk(es, ll(u), index='test_nlm')
+
+helpers.bulk(es, index_items("index")) # could also be create
