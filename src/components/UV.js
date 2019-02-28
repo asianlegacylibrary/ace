@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 
+import { log } from '../store/actions'
 import '../assets/css/uv-component.scss'
 
 export default class UVComponent extends Component {
 
     openManifest = () => {
 
-        console.log('open sesamanifest', this.uvstate)
+        log('open sesamanifest', this.uvstate)
         
         this.uv.set(Object.assign({}, this.uvstate, {
             collectionIndex: 0,
@@ -27,7 +28,7 @@ export default class UVComponent extends Component {
             manifest = this.props.manifest
         }
             
-        console.log('uvloaded with', manifest)
+        log('uvloaded with', manifest)
 
         this.uvstate = {
             root: this.props.root,
@@ -46,13 +47,14 @@ export default class UVComponent extends Component {
         this.uv = window.createUV(this.uvEl, this.uvstate, this.urlDataProvider)
 
         this.uv.on('created', () => {
-            console.log('uv created with', this.uvstate)
+            log('uv created with', this.uvstate)
             window.Utils.Urls.setHashParameter('manifest', this.uvstate.iiifResourceUri)
         })
     }
 
     setupUV = async () => {
-        console.log('setting up UV with props from App...', this.props)
+
+        log('setting up UV with props from App...', this.props)
         // prevent server-side compilation error
         if (typeof window === 'undefined') {
             return
@@ -60,7 +62,7 @@ export default class UVComponent extends Component {
             // uvLoaded already happened? 
             // event uvLoaded never 'heard' when uv.js is cached (304)
             // problem happens in firefox, sometimes in Chrome / Safari
-            console.log('uv in window, but possibly uvLoaded event will not fire')
+            log('uv in window, but possibly uvLoaded event will not fire')
             if(this.uvstate === undefined) {
                 this.createUVobj()
                 return
@@ -73,12 +75,9 @@ export default class UVComponent extends Component {
                 this.createUVobj()
             }
 
-            console.log('uvLoaded', window)
+            log('uvLoaded from event handler', window)
             
         }, false)
-
-        
-        
 
     }
 
@@ -92,20 +91,21 @@ export default class UVComponent extends Component {
     
     // need to look into this lifecycle method
     componentWillUpdate = () => {
-        console.log('will update')
+        log('will update')
     }
 
     componentWillReceiveProps = (nextProps) => {
-        console.log('next props', nextProps, 'uvstate', this.uvstate)
+        log('next props', nextProps, 'uvstate', this.uvstate)
         if(this.uvstate === undefined) {
             this.setupUV()
 
         } else if(this.uvstate.iiifResourceUri !== nextProps.manifest) {
-            console.log('we need to load a new manifest', this.props.manifest, nextProps.manifest)
             this.uvstate.iiifResourceUri = nextProps.manifest
+            log('we need to load a new manifest', this.props.manifest, nextProps.manifest)
             this.openManifest()
+        
         } else {
-            console.log('next props the same as current')
+            log('next props the same as current')
         }
     }
 

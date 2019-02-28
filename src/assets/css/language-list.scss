@@ -1,11 +1,23 @@
 @import './variables.scss';
 
-.language-list {
+.lang {
+  button {
+    border: 1px solid $color-gold;
+  }
+}
+
+.lang-active {
+  button {
+    color: $color-dark;
+  }
+}
+
+.button-list {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    color: $color-text-light;
+    color: $color-light;
     padding: $pad-text;
 
     li {
@@ -13,7 +25,10 @@
       }
     
     button {
-      background-color: #222;
+      background-color: $color-light;
+      &:hover {
+        background-color: $color-gold;
+      }
     }
       
       li a {
@@ -25,7 +40,7 @@
       }
       
       li a:hover {
-        background-color: #111111;
+        background-color: $color-dark;
       }
 
 }

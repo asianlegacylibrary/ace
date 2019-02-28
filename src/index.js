@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import './assets/css/index.scss'
 import './assets/css/overrides.scss'
-import { store } from './store'
+import configureStore from './store'
 import { SET_LANG, initialState } from './store/actions'
 import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 
 // this is what gives the entire app access to t, i18n...
 import './i18n'
+
+const store = configureStore()
 
 store.dispatch({
     type: SET_LANG, 

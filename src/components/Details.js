@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Tabs from './tabs/Tabs'
-import { TabVolume } from './tabs/TabVolume'
+import TabVolume from './tabs/TabVolume'
 import { TabCatalog } from './tabs/TabCatalog'
 import TabConfig from './tabs/TabConfig'
 import TabSearch from './tabs/TabSearch'

@@ -35,12 +35,33 @@
         padding-left: 0em;
     }
     button {
-        color: #413D53 !important;
-        border: 0;
+        color: $color-dark !important;
+        // border: 1px solid $color-brand-primary;
+        // font-size: 1em;
+        // margin-bottom: 1em;
     }
 }
 
 input {
     width: 100%;
+}
+
+.viewer-btn {
+    padding-left: 0.5em;
+}
+.search-btn {
+    border: 0;
+    padding: 0 10px;
+    margin: 0;
+    line-height: 2em;
+    height: 3em;
+}
+.search-bar {
+    padding: 0.5em 0 1em 0;
+}
+
+.bolded {
+    font-weight: bold;
+    letter-spacing: 0.1em;
 }
 

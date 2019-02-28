@@ -46,8 +46,8 @@ export const phraseTerm = (term, offset) => {
 		highlight: highlight_108
 		
 	}
-	//console.log('the body of phrase match ', body);
+	//log('the body of phrase match ', body);
 	const b = client.search({index, type, body})
-	console.log('logging client.search pre return ', b)
+	log('logging client.search pre return ', b)
 	return client.search({index, type, body})
 }

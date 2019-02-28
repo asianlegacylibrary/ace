@@ -1,11 +1,15 @@
-export const INCREMENT = 'INCREMENT'
-export const DECREMENT = 'DECREMENT'
 
 export const initialState = {
     count: 0,
     activeTab: 'config',
     defaultLanguage: 'en',
     index: 'titles'
+}
+
+export const log = (...msgs) => {
+	if (process.env.NODE_ENV === 'development') {
+		console.log(...msgs)
+	}
 }
 
 export const randomIIIFimages = [
@@ -31,7 +35,6 @@ export const bdrc = [
 ]
 // ####################################################
 
-
 /**
  * Returns a random number between min (inclusive) and max (exclusive)
  */
@@ -46,22 +49,97 @@ export const getRandomInt = (min, max) => {
 }
 
 // check if the BDRC image server is up (it's down a lot these days!)
-export const checkIIIFserver = async () => {
-    try {
-        const response = await fetch(bdrcManifest)
-        if(response.ok) { return true }
-        console.log(response.status)
-        throw new Error(response.status)
-    } catch (e) {
-        if(e instanceof TypeError) {
-            console.log('typeerror', e)
-            return false
-        } else {
-            console.log('error', e)
-            return false 
+export const checkIIIFserver = () => {
+    return async dispatch => {
+        dispatch(requestServer())
+        try {
+            await fetch(bdrcManifest)
+            return dispatch(receiveServer(bdrc[getRandomInt(0, bdrc.length - 1)]))
+        } catch(e) {
+            if(e instanceof TypeError) {
+                console.error('typeerror', e)
+            } else {
+                console.error('error', e)
+            }
+            return dispatch(receiveServer(princetonManifest))
         }
     }
-  }
+}
+
+export const parseVolumeManifest = (manifestURL) => {
+    return async dispatch => {
+        dispatch(requestManifest())
+        try {
+            const response = await fetch(manifestURL)
+            const data = await response.json()
+            return dispatch(receiveManifest(data))
+        } catch (error) {
+            return dispatch(receiveError(error, manifestURL))
+        }
+    }
+}
+
+export const REQUEST_MANIFEST = 'REQUEST_MANIFEST'
+function requestManifest() {
+    return {
+        type: REQUEST_MANIFEST
+    }
+}
+
+export const RECEIVE_MANIFEST = 'RECEIVE_MANIFEST'
+export function receiveManifest(data) {
+    //reshape data here...
+    // const id = data['@id']
+    // const context = data['@context']
+    // const manifestType = data['@type']
+    
+    return {
+        type: RECEIVE_MANIFEST,
+        item: data,
+        receivedAt: Date.now()
+    }
+}
+
+export const RECEIVE_ERROR = 'RECEIVE_ERROR'
+function receiveError(e, url) {
+    return {
+        type: RECEIVE_ERROR,
+        error: e,
+        url: url,
+        receivedAt: Date.now() 
+    }
+}
+
+export const LAUNCH_IIIF = 'LAUNCH_IIIF'
+
+export const REQUEST_SERVER = 'REQUEST_SERVER'
+function requestServer() {
+    return {
+        type: REQUEST_SERVER
+    }
+}
+
+export const NULLIFY_SERVER = 'NULLIFY_SERVER'
+export const NULLIFY_MANIFEST = 'NULLIFY_MANIFEST'
+
+export const RECEIVE_SERVER = 'RECEIVE_SERVER'
+export function receiveServer(url) {
+    let server, resource
+    if(url === '') {
+        server = ''
+        resource = ''
+    } else {
+        server = new URL(url).host
+        resource = new URL(url).pathname
+    }
+    return {
+        type: RECEIVE_SERVER,
+        url: url, //.filter(child => child.acf.language === lang), //.data.children.map(child => child.data),
+        server: server,
+        resource: resource,
+        receivedAt: Date.now()
+    }
+}
 
 export const SET_TAB = 'SET_TAB'
 export const setTab = tab => ({

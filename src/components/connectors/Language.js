@@ -3,10 +3,12 @@ import { setLanguage, initialState } from '../../store/actions'
 import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 
+import { log } from '../../store/actions'
+
 //{ active, activeTab, children, dispatch, lang, i18n, t }
 const Language = ({ language, active, children, dispatch, i18n }) => {
 
-  console.log('Language.js render...')
+  log('Language.js render...')
 
   const updateLangAndTabs = () => {
     dispatch(setLanguage(language))
@@ -20,10 +22,6 @@ const Language = ({ language, active, children, dispatch, i18n }) => {
         updateLangAndTabs(language)
         }}
       className={active ? "lang-active" : "lang"}
-      style={active ? 
-        { color: 'red', } :
-        { color: 'black', } 
-        }
     >
     <button
       key={children}
@@ -36,7 +34,7 @@ const Language = ({ language, active, children, dispatch, i18n }) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  //console.log('mstp language, ', 'state:', state, 'ownProps:', ownProps)
+  //log('mstp language, ', 'state:', state, 'ownProps:', ownProps)
   return {
     active: ownProps.language === state.selectedLanguage,
     language: ownProps.language || initialState.defaultLanguage

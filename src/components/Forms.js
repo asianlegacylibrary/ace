@@ -1,5 +1,6 @@
 import React from 'react'
 import { withNamespaces } from 'react-i18next'
+import '../assets/css/forms.scss'
 
 const Forms = ({ t, currentItem, searchType }) => {
     if(Object.keys(currentItem).length === 0) {
@@ -41,10 +42,15 @@ const Forms = ({ t, currentItem, searchType }) => {
         colophon = c['Colophon-tugsguliin ug']
         jsx = (
             <div className="meta">
-                <p className="meta-id">{itemID}</p>
-                <p>{workID}</p>
-                <h1 className="meta-title">{title}</h1>
-                <h2 className="meta-author">{author}</h2>
+                <div className="meta-ids">
+                    <p className="meta-id">{itemID}</p>
+                    <p className="meta-id">{workID}</p>
+                </div>
+                <div className="meta-items">
+                    <div className="meta-author">{author}</div>
+                    <div className="meta-title">{title}</div>
+                    
+                </div>
                 <p>{colophon}</p>
             </div>
         )

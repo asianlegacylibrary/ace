@@ -1,8 +1,11 @@
+@import './variables.scss';
+
 button {
-    color: #efefef !important;
+    color: $color-light !important;
     padding: 0 1em;
     height: 2.2em;
     line-height: 2em;
+    border: 1px solid $color-gold-bright;
 }
 
 h5 {

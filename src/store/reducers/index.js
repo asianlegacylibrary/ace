@@ -2,24 +2,20 @@ import { combineReducers } from 'redux'
 
 import { 
     initialState,
-    DECREMENT, 
-    INCREMENT, 
     SET_TAB,
     SET_LANG,
     SET_CURRENT_ITEM,
-    CURRENT_BG_POS
+    LAUNCH_IIIF,
+    CURRENT_BG_POS,
+    REQUEST_SERVER,
+    RECEIVE_SERVER,
+    NULLIFY_SERVER,
+    REQUEST_MANIFEST,
+    RECEIVE_MANIFEST,
+    NULLIFY_MANIFEST,
+    RECEIVE_ERROR
 } from '../actions'
 
-const count = (state = initialState.count, action) => {
-    switch (action.type) {
-        case DECREMENT:
-            return state - 1
-        case INCREMENT:
-            return state + 1
-        default:
-            return state
-    }
-}
 
 const activeTab = (state = initialState.activeTab, action) => {
     switch(action.type){
@@ -57,34 +53,79 @@ const viewer = (state = {x:0, y:0}, action) => {
     }
 }
 
+const launchIIIF = (state = false, action) => {
+    switch(action.type) {
+        case LAUNCH_IIIF:
+            return action.launch
+        default:
+            return state
+    }
+}
+
+const serverIIIF = (state = { isFetching: false, url: ''}, action) => {
+    switch(action.type) {
+        case REQUEST_SERVER:
+            return Object.assign({}, state, {
+                isFetching: true
+            }) 
+        case RECEIVE_SERVER:
+            return Object.assign({}, state, {
+                isFetching: false,
+                url: action.url,
+                server: action.server,
+                resource: action.resource,
+                lastUpdated: action.receivedAt
+            })
+        case NULLIFY_SERVER:
+            return Object.assign({}, state, {
+                isFetching: false,
+                url: '',
+                server: null,
+                resource: null,
+                lastUpdated: action.receivedAt
+            })
+        default:
+            return state
+    }
+}
+
+const manifestData = (state = { isFetching: false, item: null }, action) => {
+    switch(action.type) {
+        case REQUEST_MANIFEST:
+            return Object.assign({}, state, {
+                isFetching: true
+            }) 
+        case RECEIVE_MANIFEST:
+            return Object.assign({}, state, {
+                isFetching: false,
+                item: action.item,
+                lastUpdated: action.receivedAt
+            })
+        case RECEIVE_ERROR:
+            return Object.assign({}, state, {
+                isFetching: false,
+                error: action.error,
+                url: action.url
+            }) 
+        case NULLIFY_MANIFEST:
+            return Object.assign({}, state, {
+                isFetching: false,
+                item: null,
+                lastUpdated: action.receivedAt
+            })
+        default:
+            return state
+    }
+}
+ 
 const rootReducer = combineReducers({
     activeTab,
     selectedLanguage,
-    count,
     viewer,
+    launchIIIF,
+    serverIIIF,
+    manifestData,
     currentItem
 })
 
 export default rootReducer
-
-
-// export const test = (state = {
-//     foo: false,
-//     count: 0
-// }, action) => {
-// 	switch(action.type) {
-// 		case DECREMENT:
-// 			return Object.assign({}, state, {
-//                 foo: true,
-//                 count: action.count - 1
-//             })
-//         case INCREMENT:
-//             return Object.assign({}, state, {
-//                 foo: false,
-//                 count: action.count + 1
-//             })
-// 		default:
-// 			return state
-// 	}
-// }
-

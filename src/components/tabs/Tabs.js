@@ -24,6 +24,7 @@ class Tabs extends Component {
                         key={label}
                         labelKey={label}
                         label={t('tabs')[label]}
+                        handleIIIF={() => this.handleViewer()}
                         onClick={() => this.onClickTabItem(label)}
                     />
                 )

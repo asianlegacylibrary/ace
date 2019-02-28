@@ -17,7 +17,7 @@ const Languages = (props) => {
         )
     })
     return (
-        <ul className="language-list">{list}</ul>
+        <ul className="button-list">{list}</ul>
     );
 }
 

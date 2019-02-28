@@ -5,7 +5,9 @@ import { withNamespaces } from 'react-i18next'
 import SearchBar from './SearchBar'
 import { phraseTerm } from '../../store/search'
 import { checkConnection } from '../../store/es'
-import { getRandomInt, SET_CURRENT_ITEM } from '../../store/actions'
+import { getRandomInt, SET_CURRENT_ITEM, log } from '../../store/actions'
+
+import '../../assets/css/tabs.scss'
 
 class TabSearch extends Component { 
     
@@ -48,12 +50,12 @@ class TabSearch extends Component {
 
     componentDidMount = async () => {
 		try {
-			await checkConnection();
+			await checkConnection()
 			this.setState({ 
                 isConnectedState: true,
                 loading: false
             }, () => {
-				console.log('is connected', this.state.isConnectedState);
+				log('is connected', this.state.isConnectedState);
 				//this.initialize();
             })
 
@@ -61,54 +63,61 @@ class TabSearch extends Component {
 
 		} catch (error) {
 			this.setState({ isConnectedState: false }, () => {
-				console.error('is connected? is c state? ', this.state.isConnectedState);
+				console.error('no connection', error, this.state.isConnectedState);
 			});
         }
     }
 
     search = async (offset) => {
 		try {
-			console.log(this.state.term, offset)
+			log(this.state.term, offset)
 			const esResponse = await phraseTerm(this.state.term, offset)
             if(esResponse.hits.total === 0) {
 				this.setState({
-                    esResponse: {},
-                    searchResults: [{'_id':'No Results'}]
+                    esResponse: {}, 
+                    searchResults: [null] //{'_id':'No Results'}
                 })
             } else {
                 this.setState({
                     esResponse: esResponse,
                     searchResults: esResponse.hits.hits
                 }, () => {
-                    console.log(this.state.searchResults)
+                    log(this.state.searchResults)
                 })
             }
         } catch(e) {
 			console.error('error from search()...', e.status)
 			//const esResponse = ['ERROR'];
 			if(e.status === 400) {
-                console.log('400!')
+                console.error('400!', e)
             }
         }
     }
 
     render() {
-        const list = this.state.searchResults.map(item => {
-            return (
-                <li key={item['_id']}>
-                    <button onClick={() => { 
-                        this.setState({ 
-                            currentItem: item['_source'] 
-                        }, () => {
-                            console.log(this.state.currentItem)
-                            this.props.dispatch({ type: SET_CURRENT_ITEM, item: this.state.currentItem})
-                        })
-                        }}>
-                        {item['_id']}
-                    </button>
-                </li>
-            )
-        })
+        let list
+        if (this.state.searchResults[0] === null && this.state.loading === false) {
+            log('null', this.state.searchResults)
+            list = ( <li>NO RESULTS</li> )
+        } else {
+            list = this.state.searchResults.map(item => {
+                return (
+                    <li key={item['_id']}>
+                        <button className="search-btn" onClick={() => { 
+                            this.setState({ 
+                                currentItem: item['_source'] 
+                            }, () => {
+                                log(this.state.currentItem)
+                                this.props.dispatch({ type: SET_CURRENT_ITEM, item: this.state.currentItem})
+                            })
+                            }}>
+                            {item['_id']}
+                        </button>
+                    </li>
+                )
+            })
+        }
+        
         return (
             <ul className="tab-search">
                 <SearchBar

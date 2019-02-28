@@ -7,7 +7,7 @@ from pathlib import Path
 from config import config_es, index_ids
 
 # create ES client
-env = "development"
+env = "production"
 es = Elasticsearch(
     [config_es[env]],
     sniff_on_start=True,

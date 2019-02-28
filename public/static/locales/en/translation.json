@@ -11,11 +11,16 @@
     "search": "Search"
   },
   "configuration": {
-    "intro": "For now I'll place all config type details in here. Later we can move to proper place. <1>Language</1>",
-    "iiif-server": "<1>IIIF Server</1>The International Image Interoperability Framework (IIIF) is a protocol for standardized image retrieval created by a community of the world’s leading research libraries, major national libraries and not-for-profit image repositories in an effort to collaboratively produce an interoperable technology and community framework for image delivery."
+    "intro": "Temporary location for config details...",
+    "language": "Language",
+    "iiif-server-title": "IIIF Server",
+    "iiif-question": "What is IIIF?",
+    "iiif-server": "We use IIIF to display scanned images of these volumes. The International Image Interoperability Framework (IIIF) is a protocol for standardized image retrieval created by a community of the world’s leading research libraries, major national libraries and not-for-profit image repositories in an effort to collaboratively produce an interoperable technology and community framework for image delivery."
   },
   "viewer": {
-    "title": "Viewer"
+    "title": "Viewer",
+    "launch": "Load A Volume",
+    "close": "Close Viewer"
   }, 
   "forms": {
     "title": "Forms"

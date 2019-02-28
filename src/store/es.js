@@ -1,18 +1,16 @@
-import elasticsearch from 'elasticsearch';
+import elasticsearch from 'elasticsearch'
+import { log } from './actions'
+import { config } from './config'
 
-const port = 9200;
-const host = process.env.NODE_ENV === 'production' ? '157.230.172.69' : 'localhost';
+
+const port = 9200
+//const host = process.env.NODE_ENV === 'production' ? '157.230.172.69' : 'localhost'
+const host = config.esHost
 //const host = '157.230.172.69'
-let isConnected = false;
-let healthStatus = 'red';
+let isConnected = false
+let healthStatus = 'red'
 
-console.log(host);
-
-const log = (...msgs) => {
-	if (process.env.NODE_ENV === 'development') {
-		console.log(...msgs)
-	}
-};
+log('our es host is: ', host)
 
 const client = new elasticsearch.Client({
 	host: {
@@ -22,26 +20,28 @@ const client = new elasticsearch.Client({
 		path: ''
 	},
 	log: 'info' //'trace'
-});
+})
 
- const checkConnection = async () => {
-	log('process.env.NODE_ENV ', host);
+const checkConnection = async () => {
+	log('process.env.NODE_ENV ', host)
 	while(!isConnected) {
-		log('Connnnnecting....');
+		log('Connnnnecting....')
 		while(healthStatus === 'red') {
-			log('awaiting green light');
+			log('awaiting green light')
 			try {
-				const health = await client.cluster.health({});
-				log('health: ', health);
-				healthStatus = health.status;
-				isConnected = true;
+				const health = await client.cluster.health({})
+				log('health: ', health)
+				healthStatus = health.status
+				isConnected = true
 			} catch (err) {
-				console.error('Connection yo, is failing...', err);
-				isConnected = false;
+				console.error('Connection yo, is failing...', err)
+				isConnected = false
 			}
 		}
 	}
-	return isConnected;
+	return isConnected
 }
 
-export { client, checkConnection, isConnected, log };
+ 
+
+export { client, checkConnection, isConnected, log }
