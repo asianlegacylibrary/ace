@@ -2,11 +2,8 @@ import elasticsearch from 'elasticsearch'
 import { log } from './actions'
 import { config } from './config'
 
-
 const port = 9200
-//const host = process.env.NODE_ENV === 'production' ? '157.230.172.69' : 'localhost'
 const host = config.esHost
-//const host = '157.230.172.69'
 let isConnected = false
 let healthStatus = 'red'
 
@@ -42,6 +39,4 @@ const checkConnection = async () => {
 	return isConnected
 }
 
- 
-
-export { client, checkConnection, isConnected, log }
+export { client, checkConnection }

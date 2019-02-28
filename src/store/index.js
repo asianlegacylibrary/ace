@@ -35,14 +35,3 @@ export default function configureStore(preloadedState) {
     return store
 
 }
-
-
-// export const store = createStore(
-//     rootReducer,
-//     compose(
-//         applyMiddleware(
-//             thunkMiddleware,
-//             loggerMiddleware 
-//         )
-//     )
-// )
