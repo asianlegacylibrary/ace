@@ -1,4 +1,6 @@
-import { client, log } from './es'
+import { client } from './es'
+import { log } from '../store/actions'
+
 const index = 'titles'
 //const index = ['volumes', 'titles', 'uuree']
 const type = '' // 'data'
