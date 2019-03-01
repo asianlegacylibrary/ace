@@ -76,19 +76,16 @@ class Forms extends Component {
                     flexBasis: this.state.shrink ? '10vw' : '70vw'
                 }}
                 >
-            <button 
-                className="viewer-sizer"
-                onClick={() => {
-                this.setState({
-                    shrink: !this.state.shrink
-                }, () => {
-                    //window.dispatchEvent(new Event('resize'))
-                })
-                }
-                }
-            >
-            <i className="fal fa-arrows"></i>
-            </button>
+                <button 
+                    className="viewer-sizer"
+                    onClick={() => {
+                        this.setState({
+                            shrink: !this.state.shrink
+                        })
+                    }}
+                >
+                <i className="fal fa-arrows"></i>
+                </button>
                 {jsx}
             </div>
         )

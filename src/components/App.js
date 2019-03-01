@@ -6,8 +6,6 @@ import Viewer from './Viewer'
 import Details from './Details'
 import Forms from './Forms'
 
-import { initialState } from '../store/actions'
-
 import '../assets/css/layout-flex.scss'
 
 class App extends Component{
@@ -20,7 +18,6 @@ class App extends Component{
   }
   
   render() {
-    console.log(this.state.full)
     return (
       <div>
         <div 
@@ -37,8 +34,7 @@ class App extends Component{
               }, () => {
                 window.dispatchEvent(new Event('resize'))
               })
-            }
-            }
+            }}
           >
           <i className="fal fa-arrows"></i>
           </button>
@@ -47,13 +43,13 @@ class App extends Component{
         </div>
         <div className="wrapper-entry">
           <Details />
-          <Forms searchType={initialState.index} currentItem={this.props.currentItem} />
+          <Forms />
         </div>
       </div>
     )
   }
-  
 }
+
 const mapStateToProps = (state) => ({
   currentItem: state.currentItem
 })
