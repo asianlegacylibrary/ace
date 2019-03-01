@@ -91,10 +91,12 @@ export default class UVComponent extends Component {
     
     // need to look into this lifecycle method
     componentWillUpdate = () => {
-        log('will update')
+        log('will update', this.props.fs)
+
     }
 
     componentWillReceiveProps = (nextProps) => {
+        
         log('next props', nextProps, 'uvstate', this.uvstate)
         if(this.uvstate === undefined) {
             this.setupUV()
@@ -103,7 +105,7 @@ export default class UVComponent extends Component {
             this.uvstate.iiifResourceUri = nextProps.manifest
             log('we need to load a new manifest', this.props.manifest, nextProps.manifest)
             this.openManifest()
-        
+
         } else {
             log('next props the same as current')
         }

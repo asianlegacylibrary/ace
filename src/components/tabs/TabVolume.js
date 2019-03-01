@@ -19,7 +19,7 @@ const buildLink = (anchor) => {
 }
 
 const buildListing = (data) => {
-    let id, root, path, context, manifestType
+    let id, context, manifestType
     if(data == null) {
         return (
             <ul className="tab-volume">
@@ -28,8 +28,6 @@ const buildListing = (data) => {
         )
     } else {
         id = data['@id']
-        root = new URL(id).host
-        path = new URL(id).pathname
         context = data['@context']
         manifestType = data['@type']
         return (
@@ -43,12 +41,11 @@ const buildListing = (data) => {
 }
 
 const TabVolume = ({ data, t }) => {
-    console.log('from the volume tab', data)
     return (
         <div>
             {buildListing(data)}
             <h5>{t('configuration.iiif-server-title')}</h5>
-            <LaunchIIIF label="Launch IIIF Viewer" />
+            <LaunchIIIF />
             <h5>{t('configuration.iiif-question')}</h5>
             <p>{t('configuration.iiif-server')}</p>
         </div>

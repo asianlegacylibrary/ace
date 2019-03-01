@@ -11,6 +11,10 @@ import * as serviceWorker from './serviceWorker'
 // this is what gives the entire app access to t, i18n...
 import './i18n'
 
+import '@fortawesome/fontawesome-pro/css/all.css'
+
+
+
 const store = configureStore()
 
 store.dispatch({

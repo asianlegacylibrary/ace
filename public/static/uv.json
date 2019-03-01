@@ -3,7 +3,8 @@
       "headerPanelEnabled": true,
       "footerPanelEnabled": false,
       "leftPanelEnabled": true,
-      "termsOfUseEnabled": false
+      "termsOfUseEnabled": false,
+      "overrideFullScreen": false
     },
     "modules": {
       "headerPanel": {

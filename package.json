@@ -36,5 +36,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@fortawesome/fontawesome-pro": "^5.7.2",
+    "@fortawesome/pro-light-svg-icons": "^5.7.2"
+  }
 }

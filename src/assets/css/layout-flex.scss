@@ -5,6 +5,7 @@
     flex-direction: column;
     height: 46vh;
     align-items: stretch;
+    position: relative;
   }
   // .top-bar {
   //   background: rgba(240, 20, 100, 0.5);
@@ -15,6 +16,27 @@
     background: #ccc;
     padding: 0;
     // background-size: 
+  }
+
+  .viewer-sizer {
+    z-index: 1000;
+    background-color: rgba(40, 40, 40, 0.2);
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    border: 0;
+    line-height: 2em;
+    padding: 0.4em;
+    height: 2.8em;
+    cursor: pointer;
+    &:focus {
+      outline-color: none;
+      outline-style: none;
+      outline-width: 0;
+    }
+    &:hover {
+      background-color: rgba(40, 40, 40, 0.8);
+    }
   }
 
   // .viewer img {
