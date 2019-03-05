@@ -7,6 +7,14 @@
     align-items: stretch;
     position: relative;
   }
+  .logo-background {
+    background: transparent;
+    text-align: center;
+    position: absolute;
+    height: 2em;
+    z-index: 1000;
+    margin: 10px;
+  }
   // .top-bar {
   //   background: rgba(240, 20, 100, 0.5);
   //   padding: $pad-text;
@@ -22,21 +30,28 @@
     z-index: 1000;
     background-color: rgba(40, 40, 40, 0.2);
     position: absolute;
-    bottom: 20px;
     right: 20px;
     border: 0;
     line-height: 2em;
-    padding: 0.4em;
-    height: 2.8em;
+    height: 2em;
     cursor: pointer;
+    &:hover {
+      background-color: rgba(139, 138, 138, 0.8);
+    }
     &:focus {
       outline-color: none;
       outline-style: none;
       outline-width: 0;
     }
-    &:hover {
-      background-color: rgba(40, 40, 40, 0.8);
+    &.smaller {
+      bottom: 40px;
+      margin: 10px auto;
     }
+    &.bigger {
+      bottom: 20px;
+      margin: 0 auto;
+    }
+    
   }
 
   // .viewer img {
