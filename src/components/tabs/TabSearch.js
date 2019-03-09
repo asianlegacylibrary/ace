@@ -34,7 +34,10 @@ class TabSearch extends Component {
             `GSHONGS CHEN`,
             `SU MA TI`,
             `THAMS CAD MKHYEN PA`,
-            `BLO BZANG`
+            `BLO BZANG`,
+            `BYED SPYAN RAS GZIGS KYI BYAB`,
+            `DGRA LHA SPUN DGU'I`,
+            `GUG CHO GA ZHES BYA BA`
         ]
 
         this.state = {
@@ -104,12 +107,14 @@ class TabSearch extends Component {
                 return (
                     <li key={item['_id']}>
                         <button className="search-btn" onClick={() => { 
-                            this.setState({ 
-                                currentItem: item['_source'] 
-                            }, () => {
-                                log(this.state.currentItem)
-                                this.props.dispatch({ type: SET_CURRENT_ITEM, item: this.state.currentItem})
-                            })
+                            log(this.state.currentItem)
+                            this.props.dispatch({ type: SET_CURRENT_ITEM, highlight: item['highlight'], source: item['_source'], index: item['_index'] })
+                            // this.setState({ 
+                            //     currentItem: item['_source'] 
+                            // }, () => {
+                            //     log(this.state.currentItem)
+                            //     this.props.dispatch({ type: SET_CURRENT_ITEM, item: this.state.currentItem})
+                            // })
                             }}>
                             {item['_id']}
                         </button>

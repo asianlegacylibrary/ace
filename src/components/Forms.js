@@ -15,6 +15,7 @@ class Forms extends Component {
     //= ({ t, currentItem, searchType }) => {
     //const b = false
     render() {
+        console.log('current item looks like', this.props.currentItem)
         const { currentItem } = this.props
         if(Object.keys(currentItem).length === 0) {
             return (
@@ -22,12 +23,14 @@ class Forms extends Component {
             )
         }
 
-        const c = currentItem
+        const c = currentItem.source
+        const h = currentItem.highlight || null
+        const index = currentItem.index
         let jsx = null
         let title, tibTitle, itemID, nameCataloger, 
             nameDigitizer, imageID, imageDir, output,
             workID, author, colophon
-        if(initialState.index === "volumes") {
+        if(index === "volumes") {
             title =  c['Title']
             tibTitle = c['Title in Tibetan']
             itemID = c['NLM Catalog #']
@@ -39,32 +42,56 @@ class Forms extends Component {
             jsx = (
                 <div className="meta">
                     <p className="meta-id">{itemID}</p>
+                    <p className="meta-id">Pulled from ${index} index.</p>
                     <p>{`${imageID}, ${imageDir}`}</p>
                     <p>{`No, of pages scanned (number of images): ${output}`}</p>
-                    <h1 className="meta-title">{title}</h1>
                     <h2 className="meta-title-tib">{tibTitle}</h2>
+                    <h2 className="meta-title">{title}</h2>
+                    
                     <p>{`Cataloger: ${nameCataloger}`}</p> 
                     <p>{`Digitizer: ${nameDigitizer}`}</p> 
                 </div>
             )
-        } else if(initialState.index === "titles") {
+        } else if(index === "titles") {
             title =  c['Full Title (native language)']
             itemID = c['NLM Catalog #']
             author = c[`Author's name (transliterated)`]
             workID = c['Input file number']
-            colophon = c['Colophon-tugsguliin ug']
+            colophon = h !== null ? h['Colophon-tugsguliin ug']: c['Colophon-tugsguliin ug']
             jsx = (
                 <div className="meta">
                     <div className="meta-ids">
                         <p className="meta-id">{itemID}</p>
                         <p className="meta-id">{workID}</p>
+                        <p className="meta-id">Pulled from ${index} index.</p>
                     </div>
                     <div className="meta-items">
                         <div className="meta-author">{author}</div>
-                        <div className="meta-title">{title}</div>
+                        <div className="meta-title" dangerouslySetInnerHTML={{__html: title}} />
                         
                     </div>
-                    <p>{colophon}</p>
+                    <p dangerouslySetInnerHTML={{__html: colophon}} />
+                </div>
+            )
+        } else if(index === "uuree") {
+            title = c['Full Title (native language)']
+            itemID = c['-*']
+            author = c[`Author's name (transliterated)`]
+            workID = c['Input file number']
+            colophon = h !== null ? h['Colophon']: c['Colophon']
+            jsx = (
+                <div className="meta">
+                    <div className="meta-ids">
+                        <p className="meta-id">{itemID}</p>
+                        <p className="meta-id">{workID}</p>
+                        <p className="meta-id">Pulled from ${index} index.</p>
+                    </div>
+                    <div className="meta-items">
+                        <div className="meta-author">{author}</div>
+                        <div className="meta-title" dangerouslySetInnerHTML={{__html: title}} />
+                        
+                    </div>
+                    <p dangerouslySetInnerHTML={{__html: colophon}} />
                 </div>
             )
         }

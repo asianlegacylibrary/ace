@@ -1,4 +1,7 @@
 {
-    "python.pythonPath": "./src/python/venv/bin/python3.7",
-    "python.globalModuleInstallation": true
+    "python.pythonPath": "./processing/python/venv/bin/python3.7",
+    "python.globalModuleInstallation": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "r.rterm.mac": "/Library/Frameworks/R.framework/Resources/bin/R"
 }

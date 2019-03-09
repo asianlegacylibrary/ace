@@ -38,7 +38,12 @@ const selectedLanguage = (state = initialState.defaultLanguage, action) => {
 const currentItem = (state = {}, action) => {
     switch(action.type) {
         case SET_CURRENT_ITEM:
-            return action.item 
+            return Object.assign({}, state, {
+                source: action.source,
+                index: action.index,
+                highlight: action.highlight
+            }) 
+            //return action.item 
         default:
             return state
     }

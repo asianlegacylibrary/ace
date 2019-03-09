@@ -2,7 +2,7 @@ import elasticsearch from 'elasticsearch'
 import { log } from './actions'
 import { config } from './config'
 
-const port = 9200
+const port = config.esPort
 const host = config.esHost
 let isConnected = false
 let healthStatus = 'red'
