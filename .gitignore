@@ -12,10 +12,12 @@
 /src/archive
 
 # python
-/src/python/__pycache__
-/src/python/config.py 
-/src/python/venv
-/src/python/data
+/processing/python/__pycache__
+/processing/python/config.py 
+/processing/python/venv
+/processing/json
+/processing/csv
+/processing/R
 
 
 # Universal Viewer
