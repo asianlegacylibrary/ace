@@ -5,7 +5,8 @@ import { withNamespaces } from 'react-i18next'
 import SearchBar from './SearchBar'
 import { phraseTerm } from '../../store/search'
 import { checkConnection } from '../../store/es'
-import { getRandomInt, SET_CURRENT_ITEM, log } from '../../store/actions'
+import { getRandomInt, log } from '../../store/actions'
+import { SET_CURRENT_ITEM } from '../../store/types'
 
 import '../../assets/css/tabs.scss'
 

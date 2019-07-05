@@ -3,11 +3,9 @@ import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 
 import { 
-    LAUNCH_IIIF, 
     checkIIIFserver,
-    parseVolumeManifest, 
-    NULLIFY_MANIFEST,
-    NULLIFY_SERVER} from '../../store/actions'
+    parseVolumeManifest } from '../../store/actions'
+import * as types from '../../store/types'
 
 import '../../assets/css/tabs.scss'
 
@@ -15,14 +13,14 @@ const LaunchIIIF = ({dispatch, launch, url, fetching, t }) => {
     
     const checkIIIF = () => {
         let l = !launch
-        dispatch({type: LAUNCH_IIIF, launch: l})
+        dispatch({type: types.LAUNCH_IIIF, launch: l})
         if(l) {
             dispatch(checkIIIFserver()).then((response) => {
                 dispatch(parseVolumeManifest(response.url))
             })
         } else {
-            dispatch({ type: NULLIFY_MANIFEST })
-            dispatch({ type: NULLIFY_SERVER })
+            dispatch({ type: types.NULLIFY_MANIFEST })
+            dispatch({ type: types.NULLIFY_SERVER })
             window.history.pushState({}, document.title, "/")
         }
     }

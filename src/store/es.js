@@ -3,7 +3,9 @@ import { log } from './actions'
 import { config } from './config'
 
 const port = config.esPort
-const host = config.esHost
+let host = config.overrideHost //config.esHost
+
+
 let isConnected = false
 let healthStatus = 'red'
 

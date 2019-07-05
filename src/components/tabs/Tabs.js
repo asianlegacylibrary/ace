@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withNamespaces } from 'react-i18next'
 import Tab from './Tab'
-import { SET_TAB } from '../../store/actions'
+import { SET_TAB } from '../../store/types'
 
 class Tabs extends Component {
 

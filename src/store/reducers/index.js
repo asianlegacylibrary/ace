@@ -1,25 +1,10 @@
 import { combineReducers } from 'redux'
-
-import { 
-    initialState,
-    SET_TAB,
-    SET_LANG,
-    SET_CURRENT_ITEM,
-    LAUNCH_IIIF,
-    CURRENT_BG_POS,
-    REQUEST_SERVER,
-    RECEIVE_SERVER,
-    NULLIFY_SERVER,
-    REQUEST_MANIFEST,
-    RECEIVE_MANIFEST,
-    NULLIFY_MANIFEST,
-    RECEIVE_ERROR
-} from '../actions'
-
+import { initialState } from '../actions'
+import * as types from '../types'
 
 const activeTab = (state = initialState.activeTab, action) => {
     switch(action.type){
-        case SET_TAB:
+        case types.SET_TAB:
             return action.tab
         default:
             return state
@@ -28,7 +13,7 @@ const activeTab = (state = initialState.activeTab, action) => {
 
 const selectedLanguage = (state = initialState.defaultLanguage, action) => {
     switch(action.type){
-        case SET_LANG:
+        case types.SET_LANG:
             return action.language
         default:
             return state
@@ -37,7 +22,7 @@ const selectedLanguage = (state = initialState.defaultLanguage, action) => {
 
 const currentItem = (state = {}, action) => {
     switch(action.type) {
-        case SET_CURRENT_ITEM:
+        case types.SET_CURRENT_ITEM:
             return Object.assign({}, state, {
                 source: action.source,
                 index: action.index,
@@ -51,7 +36,7 @@ const currentItem = (state = {}, action) => {
 
 const viewer = (state = {x:0, y:0}, action) => {
     switch(action.type) {
-        case CURRENT_BG_POS:
+        case types.CURRENT_BG_POS:
             return action.viewer
         default:
             return state
@@ -60,7 +45,7 @@ const viewer = (state = {x:0, y:0}, action) => {
 
 const launchIIIF = (state = false, action) => {
     switch(action.type) {
-        case LAUNCH_IIIF:
+        case types.LAUNCH_IIIF:
             return action.launch
         default:
             return state
@@ -69,11 +54,11 @@ const launchIIIF = (state = false, action) => {
 
 const serverIIIF = (state = { isFetching: false, url: ''}, action) => {
     switch(action.type) {
-        case REQUEST_SERVER:
+        case types.REQUEST_SERVER:
             return Object.assign({}, state, {
                 isFetching: true
             }) 
-        case RECEIVE_SERVER:
+        case types.RECEIVE_SERVER:
             return Object.assign({}, state, {
                 isFetching: false,
                 url: action.url,
@@ -81,7 +66,7 @@ const serverIIIF = (state = { isFetching: false, url: ''}, action) => {
                 resource: action.resource,
                 lastUpdated: action.receivedAt
             })
-        case NULLIFY_SERVER:
+        case types.NULLIFY_SERVER:
             return Object.assign({}, state, {
                 isFetching: false,
                 url: '',
@@ -96,23 +81,23 @@ const serverIIIF = (state = { isFetching: false, url: ''}, action) => {
 
 const manifestData = (state = { isFetching: false, item: null }, action) => {
     switch(action.type) {
-        case REQUEST_MANIFEST:
+        case types.REQUEST_MANIFEST:
             return Object.assign({}, state, {
                 isFetching: true
             }) 
-        case RECEIVE_MANIFEST:
+        case types.RECEIVE_MANIFEST:
             return Object.assign({}, state, {
                 isFetching: false,
                 item: action.item,
                 lastUpdated: action.receivedAt
             })
-        case RECEIVE_ERROR:
+        case types.RECEIVE_ERROR:
             return Object.assign({}, state, {
                 isFetching: false,
                 error: action.error,
                 url: action.url
             }) 
-        case NULLIFY_MANIFEST:
+        case types.NULLIFY_MANIFEST:
             return Object.assign({}, state, {
                 isFetching: false,
                 item: null,
@@ -123,14 +108,15 @@ const manifestData = (state = { isFetching: false, item: null }, action) => {
     }
 }
  
+// this is the shape of the data
 const rootReducer = combineReducers({
     activeTab,
-    selectedLanguage,
-    viewer,
+    currentItem,
     launchIIIF,
-    serverIIIF,
     manifestData,
-    currentItem
+    selectedLanguage,
+    serverIIIF,
+    viewer
 })
 
 export default rootReducer

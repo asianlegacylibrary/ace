@@ -1,3 +1,4 @@
+import * as types from '../types'
 
 export const initialState = {
     count: 0,
@@ -51,7 +52,7 @@ export const getRandomInt = (min, max) => {
 // check if the BDRC image server is up (it's down a lot these days!)
 export const checkIIIFserver = () => {
     return async dispatch => {
-        dispatch(requestServer())
+        dispatch({type: types.REQUEST_SERVER})
         try {
             await fetch(bdrcManifest)
             return dispatch(receiveServer(bdrc[getRandomInt(0, bdrc.length - 1)]))
@@ -68,7 +69,7 @@ export const checkIIIFserver = () => {
 
 export const parseVolumeManifest = (manifestURL) => {
     return async dispatch => {
-        dispatch(requestManifest())
+        dispatch({type: types.REQUEST_MANIFEST})
         try {
             const response = await fetch(manifestURL)
             const data = await response.json()
@@ -79,14 +80,7 @@ export const parseVolumeManifest = (manifestURL) => {
     }
 }
 
-export const REQUEST_MANIFEST = 'REQUEST_MANIFEST'
-function requestManifest() {
-    return {
-        type: REQUEST_MANIFEST
-    }
-}
 
-export const RECEIVE_MANIFEST = 'RECEIVE_MANIFEST'
 export function receiveManifest(data) {
     //reshape data here...
     // const id = data['@id']
@@ -94,35 +88,23 @@ export function receiveManifest(data) {
     // const manifestType = data['@type']
     
     return {
-        type: RECEIVE_MANIFEST,
+        type: types.RECEIVE_MANIFEST,
         item: data,
         receivedAt: Date.now()
     }
 }
 
-export const RECEIVE_ERROR = 'RECEIVE_ERROR'
+
 function receiveError(e, url) {
     return {
-        type: RECEIVE_ERROR,
+        type: types.RECEIVE_ERROR,
         error: e,
         url: url,
         receivedAt: Date.now() 
     }
 }
 
-export const LAUNCH_IIIF = 'LAUNCH_IIIF'
 
-export const REQUEST_SERVER = 'REQUEST_SERVER'
-function requestServer() {
-    return {
-        type: REQUEST_SERVER
-    }
-}
-
-export const NULLIFY_SERVER = 'NULLIFY_SERVER'
-export const NULLIFY_MANIFEST = 'NULLIFY_MANIFEST'
-
-export const RECEIVE_SERVER = 'RECEIVE_SERVER'
 export function receiveServer(url) {
     let server, resource
     if(url === '') {
@@ -133,7 +115,7 @@ export function receiveServer(url) {
         resource = new URL(url).pathname
     }
     return {
-        type: RECEIVE_SERVER,
+        type: types.RECEIVE_SERVER,
         url: url, //.filter(child => child.acf.language === lang), //.data.children.map(child => child.data),
         server: server,
         resource: resource,
@@ -141,27 +123,12 @@ export function receiveServer(url) {
     }
 }
 
-export const SET_TAB = 'SET_TAB'
-export const setTab = tab => ({
-    type: SET_TAB,
-    tab
-})
+export const setTab = tab => ({ type: types.SET_TAB, tab })
+export const setLanguage = language => ({ type: types.SET_LANG, language })
+export const setItem = item => ({ type: types.SET_CURRENT_ITEM, item })
 
-export const SET_LANG = 'SET_LANG'
-export const setLanguage = language => ({
-    type: SET_LANG,
-    language
-})
-
-export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM'
-export const setItem = item => ({
-    type: SET_CURRENT_ITEM,
-    item
-})
-
-export const CURRENT_BG_POS = 'CURRENT_BG_POS'
 export const currentBGpos = ({x, y}) => ({
-    type: CURRENT_BG_POS,
+    type: types.CURRENT_BG_POS,
     viewer: {
         x,
         y

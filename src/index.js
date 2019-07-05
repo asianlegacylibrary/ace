@@ -4,7 +4,8 @@ import { Provider } from 'react-redux'
 import './assets/css/index.scss'
 import './assets/css/overrides.scss'
 import configureStore from './store'
-import { SET_LANG, initialState } from './store/actions'
+import { initialState } from './store/actions'
+import { SET_LANG } from './store/types'
 import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 
@@ -12,8 +13,6 @@ import * as serviceWorker from './serviceWorker'
 import './i18n'
 
 import '@fortawesome/fontawesome-pro/css/all.css'
-
-
 
 const store = configureStore()
 
@@ -24,9 +23,11 @@ store.dispatch({
 
 const Main = () => {
     return (
-        <Provider store={store}>
-            <App />
-        </Provider>
+        <React.StrictMode>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </React.StrictMode>
     )
 }
 
